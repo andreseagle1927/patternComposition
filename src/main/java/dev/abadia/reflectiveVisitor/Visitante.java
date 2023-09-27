@@ -6,17 +6,24 @@ import java.util.ArrayList;
 import java.util.List;
 public abstract class Visitante {
     public void iniciaVisita(Visitable visitable) {
+
         int numMetodosEncontrados;
         Method metodoAInvocar;
-        List<Class<?>> visitableClases = new ArrayList<Class<?>>();List<Class<?>> visitableSuperClases;
+
+        List<Class<?>> visitableClases = new ArrayList<Class<?>>();
+        List<Class<?>> visitableSuperClases;
+
         visitableClases.add(visitable.getClass());
         numMetodosEncontrados = 0;
         metodoAInvocar = null;
+
         do {
             visitableSuperClases = new ArrayList<Class<?>>();
             for (Class<?> visitableClase : visitableClases) {
+
                 Method metodo = null;
                 Class<?> visitadorClase = this.getClass();
+
                 while ((metodo == null) && (visitadorClase != Object.class)) {
                     try {
                         metodo = visitadorClase.getDeclaredMethod("visita",new Class[] { visitableClase });
@@ -28,11 +35,10 @@ public abstract class Visitante {
                 }
                 if (metodo == null) {
                     Class<?> superClase = visitableClase.getSuperclass();
-                    if ((superClase != null)
-                            && (!visitableSuperClases.contains(superClase)))
+
+                    if ((superClase != null) && (!visitableSuperClases.contains(superClase)))
                         visitableSuperClases.add(superClase);
-                    for (Class<?> unaInterfaz :
-                            visitableClase.getInterfaces())
+                    for (Class<?> unaInterfaz :visitableClase.getInterfaces())
                         if (!visitableSuperClases.contains(unaInterfaz))
                             visitableSuperClases.add(unaInterfaz);
                 } else {
@@ -48,8 +54,7 @@ public abstract class Visitante {
             System.out.println("¡La llamada al método visita para la clase \""+ visitable.getClass().getSimpleName()+ "\" resulta ambigua!");
         else
             try {
-                metodoAInvocar.invoke(this, new Object[]
-                        { visitable });
+                metodoAInvocar.invoke(this, new Object[] { visitable });
             } catch (IllegalArgumentException e) {
             } catch (IllegalAccessException e) {
             } catch (InvocationTargetException e) {

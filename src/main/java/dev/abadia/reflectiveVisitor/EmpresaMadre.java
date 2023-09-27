@@ -5,8 +5,7 @@ import java.util.List;
 public class EmpresaMadre extends Empresa
 {
     protected List<Empresa> filiales = new ArrayList<Empresa>();
-    public EmpresaMadre(String nombre, String email, String
-            direccion)
+    public EmpresaMadre(String nombre, String email, String direccion)
     {
         super(nombre, email, direccion);
     }
