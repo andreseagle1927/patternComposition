@@ -5,8 +5,11 @@ public class DireccionComercial {
 
     public void enviaMensajes() {
         MensajeComercial mensaje = new MensajeComercial("Anuncio nueva gama");
+
         emisorComercial.envioMultiple(mensaje);
-        mensaje = new MensajeComercial("Anuncio supresión modelo");
+
+        ensaje = new MensajeComercial("Anuncio supresión modelo");
+
         emisorComercial.envioMultiple(mensaje);
     }
 
