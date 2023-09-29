@@ -12,6 +12,7 @@ public class Concesionario
 
         Administrativo administrativo = new Administrativo(  "Juan");
 
+
         direccionGeneral.agregaReceptorGeneral(comercial1);
         direccionGeneral.agregaReceptorGeneral(comercial2);
         direccionGeneral.agregaReceptorGeneral(administrativo);
